@@ -1,0 +1,23 @@
+sudo: required
+services:
+    - docker 
+before_install:
+    - docker build -t pbadgujarns/react-test -f ./client/Dockerfile.dev ./client 
+    # - docker build -t pbadgujarns/react-test -f ./client/Dockerfile.dev ./client 
+
+script:
+    - docker run -e CI=true pbadgujarns/react-test npm test
+
+
+after_success:
+    - docker build -t pbadgujarns/multi-client ./client 
+    - docker build -t pbadgujarns/multi-nginx ./nginx
+    - docker build -t pbadgujarns/multi-server ./server 
+    - docker build -t pbadgujarns/multi-worker ./worker 
+    #Log in to docker CLI
+    - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
+    #push images to docker hub
+    - docker push pbadgujar/multi-client
+    - docker push pbadgujar/multi-nginx
+    - docker push pbadgujar/multi-server
+    - docker push pbadgujar/multi-worker
