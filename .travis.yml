@@ -10,14 +10,14 @@ script:
 
 
 after_success:
-    - docker build -t pbadgujarns/multi-client ./client 
-    - docker build -t pbadgujarns/multi-nginx ./nginx
-    - docker build -t pbadgujarns/multi-server ./server 
-    - docker build -t pbadgujarns/multi-worker ./worker 
+    - docker build -t miththoobhai/multi-client ./client 
+    - docker build -t miththoobhai/multi-nginx ./nginx
+    - docker build -t miththoobhai/multi-server ./server 
+    - docker build -t miththoobhai/multi-worker ./worker 
     #Log in to docker CLI
     - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
     #push images to docker hub
-    - docker push pbadgujar/multi-client
-    - docker push pbadgujar/multi-nginx
-    - docker push pbadgujar/multi-server
-    - docker push pbadgujar/multi-worker
+    - docker push miththoobhai/multi-client
+    - docker push miththoobhai/multi-nginx
+    - docker push miththoobhai/multi-server
+    - docker push miththoobhai/multi-worker
