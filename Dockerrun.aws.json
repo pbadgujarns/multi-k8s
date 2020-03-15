@@ -36,5 +36,11 @@
             "links": ["client","server"],
             "memory": 128
         }
-    ]
+    ],
+    "volumes": [
+        {
+          "name": "database_scratch",
+          "host": {}
+        }
+      ]
 }
