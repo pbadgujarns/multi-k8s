@@ -26,14 +26,17 @@
             "name": "nginx",
             "image": "miththoobhai/multi-nginx",
             "hostname": "nginx",
-            "essential": true,
+            "essential": false,
             "portMappings":[
                 {
                     "hostPort": 80,
                     "containerPort": 80
                 }
             ],
-            "links": ["client","server"],
+            "links": [ 
+                "client",
+                "server"
+            ],
             "memory": 128
         }
     ],
